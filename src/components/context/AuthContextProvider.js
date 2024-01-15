@@ -1,7 +1,11 @@
-import React from "react";
+// В файле '../components/context/AuthContextProvider'
+const useAuth = () => {
+  // Ваш код...
 
-const AuthContextProvider = () => {
-  return <div>AuthContextProvider</div>;
+  return {
+    /* ваши данные пользователя */
+    // Другие свойства, если есть...
+  };
 };
 
-export default AuthContextProvider;
+export { useAuth };
