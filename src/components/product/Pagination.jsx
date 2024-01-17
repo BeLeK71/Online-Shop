@@ -1,7 +1,16 @@
+import { Pagination, Stack, Typography } from "@mui/material";
 import React from "react";
 
-const Pagination = () => {
-  return <div>Pagination</div>;
-};
-
-export default Pagination;
+export default function PaginationControlled(props) {
+  const { page, count, handleChange } = props;
+  return (
+    <Stack spacing={2}>
+      <Typography>page:{page}</Typography>
+      <Pagination
+        count={count}
+        page={page}
+        onChange={handleChange}
+      ></Pagination>
+    </Stack>
+  );
+}
