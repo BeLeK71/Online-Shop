@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "title": "",
+      "category": "",
+      "description": "",
+      "image": "",
+      "price": "",
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "name": "",
+      "id": 1
+    }
+  ]
+}

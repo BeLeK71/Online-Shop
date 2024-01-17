@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
-import { useCart } from "../context/CartContextProvider";
+import img1 from "./One_Ring_Blender_Render.png";
 
 const Cart = () => {
   const cartCleaner = () => {
@@ -31,7 +31,7 @@ const Cart = () => {
     // </TableContainer>
     <Box
       sx={{
-        width: "50vw",
+        // width: "50vw",
         // height: 500,
         margin: "20px auto",
         display: "flex",
@@ -55,12 +55,44 @@ const Cart = () => {
       </Typography>
 
       <div>
-        <div id="left">
-          <div id="card">
+        <div
+          id="left" // дальше надо будет заменить все дефолд значения на значения из баззы
+          данных
+        >
+          <div
+            id="card"
+            style={{ width: "580px", marginLeft: "5%", display: "flex" }}
+          >
             <img
-              src="src/components/homePage/assets/One_Ring_Blender_Render.png"
+              src={img1}
               alt=""
-              //style={{ widtwidth: "136px", height: "136px", flexShrink: 0 }}
+              style={{ width: "136px", height: "136px", flexShrink: 0 }}
+            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                marginLeft: "7%",
+              }}
+            >
+              <div style={{ display: "flex" }}>Name</div>
+              <div style={{ display: "flex" }}>Category</div>
+              <div style={{ display: "flex" }}>Price</div>
+            </div>
+            {/* Добавления кол-ва <TableCell align="right">
+              <input type="number" min={1} max={20} />
+            </TableCell> */}
+            {/* <TableCell align="right">shit</TableCell> */}
+            <input
+              style={{
+                width: "10%",
+                height: "20%",
+                flexShrink: 0,
+                marginLeft: "8%",
+                marginTop: "2%",
+              }}
+              type="number"
             />
           </div>
         </div>
