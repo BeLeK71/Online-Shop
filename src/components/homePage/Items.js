@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Item from "./Item";
+import Item from "./Item.js";
 
 class Items extends Component {
   render() {
@@ -28,11 +28,7 @@ class Items extends Component {
           <button className="viewBtn">View All</button>
         </div>
 
-        <div className="carts">
-          {this.props.items.map((el) => (
-            <Item key={el.id} item={el} onAdd={this.props.onAdd} />
-          ))}
-        </div>
+        <div className="carts"></div>
       </main>
     );
   }

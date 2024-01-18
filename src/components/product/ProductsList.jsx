@@ -5,6 +5,12 @@ import { useProducts } from "../context/ProductContextProvider";
 
 const ProductList = () => {
   const { getProducts, products } = useProducts();
+  // //! Search
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams);
+  // useEffect(() => {
+  //   getProducts();
+  // }, [searchParams]);
   //! PAGINATION
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {

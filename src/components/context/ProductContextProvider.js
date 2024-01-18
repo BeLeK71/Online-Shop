@@ -1,6 +1,7 @@
-import axios from "axios";
 import React, { createContext, useContext, useReducer } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ACTIONS, API, API_CATEGORIES } from "../../helpers/const";
 export const productContext = createContext();
 export const useProducts = () => useContext(productContext);
 
@@ -22,13 +23,11 @@ const reducer = (state = INIT_STATE, action) => {
 };
 
 const ProductContextProvider = ({ children }) => {
-  const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
   //CREATE
   const addProduct = async (newProduct) => {
     await axios.post(API, newProduct);
-    navigate("/products");
   };
 
   //READ
@@ -42,7 +41,53 @@ const ProductContextProvider = ({ children }) => {
   //DELETE
   const deleteProduct = async (id) => {
     await axios.delete(`${API}/${id}`);
+    getProducts();
   };
+  //EDIT
+  const editProduct = async (id, editedProduct) => {
+    await axios.patch(`${API}/${id}`, editedProduct);
+  };
+  //GET_ONE_PRODUCT
+  const getOneProduct = async (id) => {
+    const { data } = await axios(`${API}/${id}`);
+    dispatch({ type: ACTIONS.GET_ONE_PRODUCT, payload: data });
+  };
+
+  //GET_CATEGORIES
+  const getCategories = async () => {
+    const result = await axios(API_CATEGORIES);
+    dispatch({ type: ACTIONS.GET_CATEGORIES, payload: result.data });
+  };
+  //CREATE_CATEGORIES
+  const createCategories = async (newCategory) => {
+    await axios.post(API_CATEGORIES, newCategory);
+  };
+  //FILTER && SORT
+  const fetchByParams = (query, value) => {
+    const search = new URLSearchParams(window.location.search);
+    if (value === "all") {
+      search.delete(query);
+    } else {
+      search.set(query, value);
+    }
+    const url = `${window.location.pathname}?${search.toString()}`;
+  };
+  const values = {
+    addProduct,
+    getProducts,
+    products: state.products,
+    deleteProduct,
+    getOneProduct,
+    editProduct,
+    oneProduct: state.oneProduct,
+    getCategories,
+    createCategories,
+    categories: state.categories,
+    fetchByParams,
+  };
+  return (
+    <productContext.Provider value={values}>{children}</productContext.Provider>
+  );
 };
 
 export default ProductContextProvider;

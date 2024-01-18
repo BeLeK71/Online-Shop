@@ -2,7 +2,6 @@ import { Box, Button, Typography, Input, Grid } from "@mui/material";
 import React, { useEffect } from "react";
 import img1 from "./One_Ring_Blender_Render.png";
 import img2 from "./Vector.svg";
-import img3 from "./Line 01.svg";
 
 const Cart = () => {
   const cartCleaner = () => {
