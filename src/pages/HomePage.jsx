@@ -1,8 +1,16 @@
 import React from "react";
-import Navbar from "../components/homePage/Navbar";
+import Items from "../components/homePage/Items";
 
-const HomePage = () => {
-  return <div>shit</div>;
+const HomePage = (props) => {
+  return (
+    <div>
+      <div className="presentation"></div>
+
+      <div>
+        <Items items={props.items} />
+      </div>
+    </div>
+  );
 };
 
 export default HomePage;
