@@ -13,12 +13,13 @@ const ProductList = () => {
   useEffect(() => {
     getProducts();
   }, [searchParams]);
+  //! можно взять для search navbar
   //! PAGINATION
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const itemPerPage = 3;
+  const itemPerPage = 9;
   const count = Math.ceil(products.length / itemPerPage);
   console.log(count);
   function currentData() {
@@ -32,7 +33,7 @@ const ProductList = () => {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
         mt: "25px",
       }}
     >

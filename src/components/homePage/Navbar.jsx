@@ -19,7 +19,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import { Divider, Grid, Link } from "@mui/material";
 
 const pages = [
-  { id: 1, title: "Shop", link: "/shop" },
+  { id: 1, title: "Shop", link: "/products" },
   { id: 2, title: "About", link: "/about" },
   { id: 3, title: "Contacts", link: "/contacts" },
 ];
@@ -196,7 +196,7 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link
-                href="/products" //! вот здесь не точно !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //! вот здесь не точно !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 key={page.id}
                 to={page.link}
                 style={{ textDecoration: "none", color: "black" }}
@@ -239,15 +239,6 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </Box>
-          <Search sx={{ color: "black" }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
