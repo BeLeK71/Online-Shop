@@ -66,7 +66,7 @@ const AddProduct = () => {
       <TextField
         onChange={handleInput}
         name="price"
-        label="Price"
+        label="number"
         variant="outlined"
         sx={{
           backgroundColor: "rgb(255, 225, 170)",

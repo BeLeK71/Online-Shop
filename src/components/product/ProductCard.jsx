@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import { useNavigate } from "react-router-dom";
 import { useProducts } from "../context/ProductContextProvider";
 import { useCart } from "../context/CartContextProvider";
 import { AddShoppingCart } from "@mui/icons-material";
@@ -15,9 +14,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+// import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ elem }) => {
-  //! хз нужен ли он const navigate = useNavigate()
+  // navigate = useNavigate();
   const { deleteProduct } = useProducts();
   const { addProductToCart } = useCart();
   const [open, setOpen] = useState(false);
