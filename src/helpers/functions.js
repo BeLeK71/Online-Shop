@@ -16,4 +16,3 @@ export const getProductsCountInCart = () => {
   let cart = getLocalStorage();
   return cart ? cart.products.length : 0;
 };
-s;
