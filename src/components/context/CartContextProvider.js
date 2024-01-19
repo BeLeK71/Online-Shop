@@ -9,9 +9,13 @@ import {
 export const cartContext = createContext();
 export const useCart = () => useContext(cartContext);
 const INIT_STATE = {
-  cart1: JSON.parse(localStorage.getItem("cart")),
+  cart1: {
+    products: [],
+    totalPrice: 0,
+  },
   cartLength: getProductsCountInCart(),
 };
+
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case ACTIONS.GET_CART:

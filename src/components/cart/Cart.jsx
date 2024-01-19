@@ -47,38 +47,40 @@ const Cart = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cart.products.map((elem) => (
-              <TableRow key={elem.item.id}>
-                <TableCell>
-                  <img
-                    width={"70"}
-                    src={elem.item.image}
-                    alt=""
-                    style={{ borderRadius: "5px" }}
-                  />
-                </TableCell>
-                <TableCell>{elem.item.title}</TableCell>
-                <TableCell>{elem.item.category}</TableCell>
-                <TableCell>{elem.item.price}</TableCell>
-                <TableCell>
-                  <input
-                    onChange={(e) =>
-                      changeProductCount(elem.item.id, e.target.value)
-                    }
-                    type="number"
-                    min={1}
-                    max={99}
-                    value={elem.count}
-                  />
-                </TableCell>
-                <TableCell>{elem.subPrice}</TableCell>
-                <TableCell>
-                  <Button onClick={() => deleteProductFromCart(elem.item.id)}>
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {cart.products &&
+              Array.isArray(cart.products) &&
+              cart.products.map((elem) => (
+                <TableRow key={elem.item.id}>
+                  <TableCell>
+                    <img
+                      width={"70"}
+                      src={elem.item.image}
+                      alt=""
+                      style={{ borderRadius: "5px" }}
+                    />
+                  </TableCell>
+                  <TableCell>{elem.item.title}</TableCell>
+                  <TableCell>{elem.item.category}</TableCell>
+                  <TableCell>{elem.item.price}</TableCell>
+                  <TableCell>
+                    <input
+                      onChange={(e) =>
+                        changeProductCount(elem.item.id, e.target.value)
+                      }
+                      type="number"
+                      min={1}
+                      max={99}
+                      value={elem.count}
+                    />
+                  </TableCell>
+                  <TableCell>{elem.subPrice}</TableCell>
+                  <TableCell>
+                    <Button onClick={() => deleteProductFromCart(elem.item.id)}>
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

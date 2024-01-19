@@ -1,38 +1,38 @@
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
 import { useProducts } from "../context/ProductContextProvider";
-import { useState } from "react";
 const style = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
+  top: "30%",
+  left: "38%",
   width: 400,
   boxShadow: 24,
   border: "2px solid black",
+  bgcolor: "background.paper",
 };
 const AddCategoryModal = (props) => {
-  const { createCategories } = useProducts();
-
-  const [category, setCategory] = useState("");
+  const { createCategory } = useProducts();
   const { open, handleClose } = props;
+  const [category, setCategory] = useState();
   const handleAdd = () => {
     const newCategory = { name: category };
-    createCategories(newCategory);
+    createCategory(newCategory);
   };
   return (
-    <Modal sx={style} open={open} onClose={handleClose}>
-      <Box>
-        <Typography component="h2" variant="h6">
-          Add new category
-        </Typography>
-        <TextField
-          onChange={(e) => setCategory(e.target.value)}
-          fullWidth
-          variant="outlined"
-        />
-        <Button onClick={handleAdd}>Add</Button>
-        <Button>Close</Button>
-      </Box>
-    </Modal>
+    <div>
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={style}>
+          <Typography variant="h6">Add new category</Typography>
+          <TextField
+            onChange={(e) => setCategory(e.target.value)}
+            fullWidth
+            variant="outlined"
+            required
+          />
+          <Button onClick={handleAdd}>Add</Button>
+        </Box>
+      </Modal>
+    </div>
   );
 };
 

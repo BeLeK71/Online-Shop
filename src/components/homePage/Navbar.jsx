@@ -1,25 +1,19 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
 import { Avatar, Divider, Grid, Tooltip } from "@mui/material";
 import { useAuth } from "../context/AuthContextProvider";
 import { useCart } from "../context/CartContextProvider";
-import { Button } from "bootstrap";
+import { Button, styled } from "@mui/material";
+
 import { ADMIN } from "../../helpers/const";
 import img2 from "./assets/erlan.jpg";
 
@@ -59,6 +53,14 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
+  const StyledButton = styled(Button)({
+    margin: "8px",
+    color: "black",
+    display: "block",
+    textDecoration: "none",
+    fontSize: "18px",
+  });
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -81,7 +83,7 @@ function Navbar() {
               "& .gold-letter": {
                 color: "#C6A969",
               },
-              textDecoration: "none", // Add this line to remove underline
+              textDecoration: "none",
             }}
           >
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
@@ -89,31 +91,79 @@ function Navbar() {
               HOPPE
             </Link>
           </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            ></IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages.map((page) => (
+                <Link key={page.id} to={page.link}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page.title}</Typography>
+                  </MenuItem>
+                </Link>
+              ))}
+              {email === ADMIN ? (
+                <Link to={"/admin"}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">ADMIN</Typography>
+                  </MenuItem>
+                </Link>
+              ) : null}
+            </Menu>
+          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
+              <Link key={page.id} to={page.link}>
+                <StyledButton onClick={handleCloseNavMenu}>
+                  {page.title}
+                </StyledButton>
+              </Link>
+            ))}
             {email === ADMIN ? (
               <Link to={"/admin"}>
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  ADMIN
-                </Button>
+                <StyledButton onClick={handleCloseNavMenu}>ADMIN</StyledButton>
               </Link>
             ) : null}
           </Box>
-          <Typography sx={{ color: "white" }}>
+
+          <Typography sx={{ color: "black" }}>
             {email ? `Hello, ${email}` : "Hello, Guest"}
           </Typography>
           <Link to={"/cart"}>
             <Badge badgeContent={badgeCount} color="success">
-              <ShoppingCartIcon sx={{ color: "white" }} />
+              <ShoppingCartIcon sx={{ color: "black", marginRight: "10px" }} />
             </Badge>
           </Link>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src />
+                <Avatar alt="Remy Sharp" src={img2} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -157,3 +207,4 @@ function Navbar() {
     </Box>
   );
 }
+export default Navbar;

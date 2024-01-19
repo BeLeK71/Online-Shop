@@ -4,6 +4,7 @@ import img2 from "./assets/371164.svg";
 import img3 from "./assets/iconmonstr-github-1.svg";
 import img4 from "./assets/Line 14.svg";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const MyStyledDiv = () => {
   return (
@@ -11,9 +12,9 @@ const MyStyledDiv = () => {
       <img src={img4} alt="Line" id="img_line" />
       <div id="div_2">
         <h1>
-          <a href="#contact" id="h1">
+          <Link to={"/contacts"} id="h1">
             CONTACT
-          </a>
+          </Link>
         </h1>
         <h1>
           <a href="#terms" id="h1">

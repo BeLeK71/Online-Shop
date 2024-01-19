@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Item from "./Item.js";
+import { Link } from "react-router-dom";
 
 class Items extends Component {
   render() {
@@ -25,7 +26,9 @@ class Items extends Component {
           >
             Shop The Latest
           </span>
-          <button className="viewBtn">View All</button>
+          <Link to={"/products"} className="viewBtn">
+            View All
+          </Link>
         </div>
 
         <div className="carts"></div>
