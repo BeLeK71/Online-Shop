@@ -1,144 +1,99 @@
-import { Box, Button, Typography, Input, Grid } from "@mui/material";
-import React, { useEffect } from "react";
-import img1 from "./One_Ring_Blender_Render.png";
-import img2 from "./Vector.svg";
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import { useCart } from "../context/CartContextProvider";
+import { useEffect } from "react";
 
 const Cart = () => {
+  const { cart, getCart, changeProductCount, deleteProductFromCart } =
+    useCart();
+  console.log(cart);
+  useEffect(() => {
+    getCart();
+  }, []);
+
   const cartCleaner = () => {
     localStorage.removeItem("cart");
-    // getCart();
+    getCart();
   };
 
   return (
-    <Box
-      sx={{
+    <div
+      style={{
+        maxWidth: 800,
         margin: "20px auto",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "0 10px",
+        padding: "16px",
+        backgroundColor: "#FFD700", // Yellow Gold
+        borderRadius: "10px",
       }}
     >
-      <Typography
-        variant="h4"
-        align="center"
-        sx={{
-          fontFamily: "DM Sans",
-          fontSize: "33px",
-          fontWeight: 500,
-          lineHeight: "43px",
+      <TableContainer>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ color: "white" }}>Picture</TableCell>
+              <TableCell sx={{ color: "white" }}>Title</TableCell>
+              <TableCell sx={{ color: "white" }}>Category</TableCell>
+              <TableCell sx={{ color: "white" }}>Price</TableCell>
+              <TableCell sx={{ color: "white" }}>Count</TableCell>
+              <TableCell sx={{ color: "white" }}>SubPrice</TableCell>
+              <TableCell sx={{ color: "white" }}>-</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {cart.products.map((elem) => (
+              <TableRow key={elem.item.id}>
+                <TableCell>
+                  <img
+                    width={"70"}
+                    src={elem.item.image}
+                    alt=""
+                    style={{ borderRadius: "5px" }}
+                  />
+                </TableCell>
+                <TableCell>{elem.item.title}</TableCell>
+                <TableCell>{elem.item.category}</TableCell>
+                <TableCell>{elem.item.price}</TableCell>
+                <TableCell>
+                  <input
+                    onChange={(e) =>
+                      changeProductCount(elem.item.id, e.target.value)
+                    }
+                    type="number"
+                    min={1}
+                    max={99}
+                    value={elem.count}
+                  />
+                </TableCell>
+                <TableCell>{elem.subPrice}</TableCell>
+                <TableCell>
+                  <Button onClick={() => deleteProductFromCart(elem.item.id)}>
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Button
+        onClick={cartCleaner}
+        style={{
+          backgroundColor: "white",
+          color: "#FFD700", // Yellow Gold
+          marginTop: "16px",
+          borderRadius: "5px",
         }}
       >
-        Shopping Cart
-      </Typography>
-
-      <Grid container spacing={2} sx={{ marginTop: "20px" }}>
-        {/* left window start */}
-        <Grid item xs={12} md={6}>
-          <div id="card" style={{ display: "flex" }}>
-            <img
-              src={img1}
-              alt=""
-              style={{ width: "136px", height: "136px", flexShrink: 0 }}
-            />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                marginLeft: "7%",
-              }}
-            >
-              <div style={{ display: "flex" }}>Name</div>
-              <div style={{ display: "flex" }}>Category</div>
-              <div style={{ display: "flex" }}>Price</div>
-            </div>
-
-            <Input
-              style={{
-                width: "5%",
-                height: "8%",
-                flexShrink: 0,
-                marginLeft: "10%",
-                marginTop: "2%",
-              }}
-              type="number"
-            />
-            <img
-              src={img2}
-              alt="x"
-              style={{
-                display: "flex",
-                width: "2%",
-                marginLeft: "5%",
-                marginTop: "-13%",
-              }}
-            />
-          </div>
-
-          <Button
-            id="coupon"
-            style={{
-              width: "50%",
-              height: "53px",
-              flexShrink: 0,
-              borderRadius: "4px",
-              border: "1px solid var(--Light-Colors-Black---Light, #000)",
-              background: "var(--Light-Colors-Black---Light, #000)",
-              color: "white",
-              marginTop: "5%",
-            }}
-          >
-            COUPON
-          </Button>
-          {/* левое окно finish */}
-        </Grid>
-
-        {/* right window start */}
-        <Grid item xs={12} md={6}>
-          <div id="card-2">
-            <Typography
-              variant="h5"
-              sx={{
-                color: "var(--Light-Colors-Black---Light, #000)",
-                fontFamily: "DM Sans",
-                fontSize: "26px",
-                fontWeight: 400,
-                lineHeight: "25px",
-                marginBottom: "15px",
-              }}
-            >
-              Cart Totals
-            </Typography>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "15px",
-              }}
-            >
-              <Typography variant="body1">TOTAL</Typography>
-              <Typography variant="body1">//Price</Typography>
-            </div>
-            <Button
-              id="checkout"
-              style={{
-                width: "50%",
-                height: "53px",
-                flexShrink: 0,
-                borderRadius: "4px",
-                border: "1px solid var(--Light-Colors-Black---Light, #000)",
-                background: "var(--Light-Colors-Black---Light, #000)",
-                color: "white",
-                marginTop: "5%",
-              }}
-            >
-              CHECKOUT
-            </Button>
-          </div>
-        </Grid>
-      </Grid>
-    </Box>
+        Checkout
+      </Button>
+    </div>
   );
 };
 

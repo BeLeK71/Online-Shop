@@ -1,19 +1,17 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useEffect } from "react";
 import { useProducts } from "../context/ProductContextProvider";
-import { useEffect } from "react";
 
 const CategorySelect = (props) => {
   const { handleInput } = props;
   const { categories, getCategories } = useProducts();
-  // useEffect(() => {
-  //   getCategories();
-  // }, []);
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">
-          Choose Category ( if u dare )
-        </InputLabel>
+        <InputLabel id="demo-simple-select-label">Choose category</InputLabel>
         <Select
           label="Category"
           defaultValue={""}
@@ -22,11 +20,11 @@ const CategorySelect = (props) => {
           labelId="demo-simple-select-label"
           onChange={handleInput}
         >
-          {/* {categories.map((elem) => (
+          {categories.map((elem) => (
             <MenuItem value={elem.name} key={elem.id}>
               {elem.name}
             </MenuItem>
-          ))} */}
+          ))}
         </Select>
       </FormControl>
     </Box>

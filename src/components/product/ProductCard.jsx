@@ -60,7 +60,7 @@ const ProductCard = ({ elem }) => {
           {elem.price}
           {/* PRICE */}
         </Typography>
-        <Stack spacing={1} margin="10% 0">
+        <Stack spacing={1} margin="10% 0" sx={{ width: "120px" }}>
           <Rating name="haf-rating" defaultValue={0} precision={1} />
         </Stack>
         {/* <Typography color="black" fontSize="18px" fontWeight={300}>

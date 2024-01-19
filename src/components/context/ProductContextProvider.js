@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
+import { ACTIONS, API, API_CATEGORIES } from "../../helpers/const";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ACTIONS, API, API_CATEGORIES } from "../../helpers/const";
 export const productContext = createContext();
 export const useProducts = () => useContext(productContext);
 
@@ -23,14 +23,14 @@ const reducer = (state = INIT_STATE, action) => {
 };
 
 const ProductContextProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
-
-  //CREATE
+  //! CREATE
   const addProduct = async (newProduct) => {
     await axios.post(API, newProduct);
+    navigate("/products");
   };
-
-  //READ
+  //! READ
   const getProducts = async () => {
     const { data } = await axios(`${API}${window.location.search}`);
     dispatch({
@@ -38,31 +38,36 @@ const ProductContextProvider = ({ children }) => {
       payload: data,
     });
   };
-  //DELETE
+  // ! DELETE
   const deleteProduct = async (id) => {
     await axios.delete(`${API}/${id}`);
     getProducts();
   };
-  //EDIT
+  //! EDIT
   const editProduct = async (id, editedProduct) => {
     await axios.patch(`${API}/${id}`, editedProduct);
+    navigate("/products");
   };
-  //GET_ONE_PRODUCT
+  //! GET_ONE_PRODUCT
   const getOneProduct = async (id) => {
     const { data } = await axios(`${API}/${id}`);
     dispatch({ type: ACTIONS.GET_ONE_PRODUCT, payload: data });
   };
-
-  //GET_CATEGORIES
+  //! GET_CATEGORIES
   const getCategories = async () => {
-    const result = await axios(API_CATEGORIES);
-    dispatch({ type: ACTIONS.GET_CATEGORIES, payload: result.data });
+    const { data } = await axios(API_CATEGORIES);
+    dispatch({
+      type: ACTIONS.GET_CATEGORIES,
+      payload: data,
+    });
   };
-  //CREATE_CATEGORIES
-  const createCategories = async (newCategory) => {
-    await axios.post(API_CATEGORIES, newCategory);
+
+  //! CREATE_CATEGORIES
+  const createCategory = async (newCategories) => {
+    await axios.post(API_CATEGORIES, newCategories);
   };
-  //FILTER && SORT
+
+  //! FILTER & SORT
   const fetchByParams = (query, value) => {
     const search = new URLSearchParams(window.location.search);
     if (value === "all") {
@@ -71,7 +76,9 @@ const ProductContextProvider = ({ children }) => {
       search.set(query, value);
     }
     const url = `${window.location.pathname}?${search.toString()}`;
+    navigate(url);
   };
+
   const values = {
     addProduct,
     getProducts,
@@ -81,7 +88,7 @@ const ProductContextProvider = ({ children }) => {
     editProduct,
     oneProduct: state.oneProduct,
     getCategories,
-    createCategories,
+    createCategory,
     categories: state.categories,
     fetchByParams,
   };

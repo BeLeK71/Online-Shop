@@ -1,18 +1,42 @@
 {
   "products": [
     {
-      "title": "123",
-      "category": "",
-      "description": "123",
+      "title": "Lui Viton ",
+      "category": "Nike",
+      "description": "fewfewewgbewgoewhgfoih aoufghewghew hegfouewhgewghwe80g",
       "image": "https://shop.kenanddanadesign.com/cdn/shop/products/IMG_1381_grande.jpg?v=1626206489",
-      "price": 123,
+      "price": "400$",
       "id": 1
+    },
+    {
+      "title": "Womens Coat",
+      "category": "Nike",
+      "description": "NIKE winter womens coat",
+      "image": "https://xcdn.next.co.uk/Common/Items/Default/Default/ItemImages/Search/676/D60436.jpg?im=Resize,width=350",
+      "price": 13000,
+      "id": 2
     }
   ],
   "categories": [
     {
-      "name": "",
+      "name": "Nike",
       "id": 1
+    },
+    {
+      "name": "Adidas",
+      "id": 2
+    },
+    {
+      "name": "MSCHF",
+      "id": 3
+    },
+    {
+      "name": "Louis Vuitton",
+      "id": 4
+    },
+    {
+      "name": "Matiz",
+      "id": 4
     }
   ]
 }

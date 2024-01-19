@@ -8,9 +8,11 @@ import CartContextProvider from "./components/context/CartContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ProductContextProvider>
-    <CartContextProvider>
-      <App />
-    </CartContextProvider>
-  </ProductContextProvider>
+  <BrowserRouter>
+    <ProductContextProvider>
+      <CartContextProvider>
+        <App />
+      </CartContextProvider>
+    </ProductContextProvider>
+  </BrowserRouter>
 );
