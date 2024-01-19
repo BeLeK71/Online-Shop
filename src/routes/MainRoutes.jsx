@@ -12,6 +12,7 @@ import AddProduct from "../components/product/AddProduct";
 import AddCategoryModal from "../components/product/AddCategoryModal";
 import { useAuth } from "../components/context/AuthContextProvider";
 import { ADMIN } from "../helpers/const";
+import ContactPage from "../pages/ContactPage";
 
 const MainRoutes = () => {
   const PUBLIC_ROUTES = [
@@ -24,6 +25,7 @@ const MainRoutes = () => {
     { id: 7, link: "/addProduct", element: <AddProduct /> },
     { id: 8, link: "/edit/:id", element: <EditPage /> },
     { id: 9, link: "/addCategory", element: <AddCategoryModal /> },
+    { id: 10, link: "/contacts", element: <ContactPage /> },
   ];
   const PRIVATE_ROUTES = [{ id: 7, link: "/admin", element: <AdminPage /> }];
   const { user } = useAuth();

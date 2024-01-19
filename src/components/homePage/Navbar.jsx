@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -11,12 +12,11 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Divider, Grid, Link } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 
 const pages = [
   { id: 1, title: "Shop", link: "/products" },
@@ -184,19 +184,18 @@ export default function PrimarySearchAppBar() {
               "& .gold-letter": {
                 color: "#C6A969",
               },
+              textDecoration: "none", // Add this line to remove underline
             }}
           >
-            <Link href="/" underline="none" color="inherit">
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <span className="gold-letter">S</span>
               HOPPE
             </Link>
           </Typography>
-
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link
-                //! вот здесь не точно !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 key={page.id}
                 to={page.link}
                 style={{ textDecoration: "none", color: "black" }}
@@ -209,7 +208,7 @@ export default function PrimarySearchAppBar() {
 
             <Divider orientation="vertical" flexItem sx={{ margin: "0 8px" }} />
 
-            <Link href="/cart">
+            <Link to="/cart">
               <Badge /*badgeContent={badgeCount}*/ color="success">
                 <ShoppingCartIcon sx={{ color: "black" }} />
               </Badge>

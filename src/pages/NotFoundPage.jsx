@@ -6,10 +6,12 @@ const NotFoundPage = () => {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    textAlign: "center",
     height: "100vh",
-    width: "436px",
-    //marginLeft: "10%",
+    width: "60%",
+    margin: "0 auto",
   };
+
   return (
     <div sx={style}>
       <h2 sx={{ fontSize: "33px", mt: 0 }}>404 ERROR</h2>
