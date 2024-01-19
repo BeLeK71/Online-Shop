@@ -1,16 +1,18 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
-import PaginationControlled from "./Pagination";
+import React, { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContextProvider";
+import PaginationControlled from "./Pagination";
+import ProductCard from "./ProductCard";
+import { useSearchParams } from "react-router-dom";
 
 const ProductList = () => {
   const { getProducts, products } = useProducts();
   // //! Search
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // console.log(searchParams);
-  // useEffect(() => {
-  //   getProducts();
-  // }, [searchParams]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
+  useEffect(() => {
+    getProducts();
+  }, [searchParams]);
   //! PAGINATION
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
@@ -26,7 +28,17 @@ const ProductList = () => {
   }
   console.log(currentData());
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        mt: "25px",
+      }}
+    >
+      {currentData().map((elem) => (
+        <ProductCard key={elem.id} elem={elem} />
+      ))}
       <PaginationControlled
         handleChange={handleChange}
         page={page}

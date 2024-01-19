@@ -9,6 +9,7 @@ const NotFoundPage = () => {
     height: "100vh",
     width: "436px",
     height: "248px",
+    //marginLeft: "10%",
   };
   return (
     <div sx={style}>

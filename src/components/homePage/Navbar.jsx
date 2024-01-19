@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -175,7 +176,6 @@ export default function PrimarySearchAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="div"
             sx={{
               display: { xs: "none", sm: "block" },
               marginLeft: "3%",
@@ -186,14 +186,17 @@ export default function PrimarySearchAppBar() {
               },
             }}
           >
-            <span className="gold-letter">S</span>
-            HOPPE
+            <Link href="/" underline="none" color="inherit">
+              <span className="gold-letter">S</span>
+              HOPPE
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link
+                href="/products" //! вот здесь не точно !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 key={page.id}
                 to={page.link}
                 style={{ textDecoration: "none", color: "black" }}
@@ -206,7 +209,7 @@ export default function PrimarySearchAppBar() {
 
             <Divider orientation="vertical" flexItem sx={{ margin: "0 8px" }} />
 
-            <Link /*to={"/cart"}*/>
+            <Link href="/cart">
               <Badge /*badgeContent={badgeCount}*/ color="success">
                 <ShoppingCartIcon sx={{ color: "black" }} />
               </Badge>

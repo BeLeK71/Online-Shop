@@ -13,7 +13,6 @@ import CartPage from "../pages/CartPage";
 import AuthPage from "../pages/AuthPage";
 import AdminPage from "../pages/AdminPage";
 import EditPage from "../pages/EditPage";
-
 import AddProduct from "../components/product/AddProduct";
 import AddCategoryModal from "../components/product/AddCategoryModal";
 import { ADMIN } from "../helpers/const";

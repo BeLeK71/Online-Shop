@@ -1,12 +1,12 @@
 {
   "products": [
     {
-      "title": "",
+      "title": "Ring",
       "category": "",
-      "description": "",
-      "image": "",
-      "price": "",
-      "id": 1
+      "description": "vey cool",
+      "image": "https://www.brides.com/thmb/nitwwsV_CQhM1cUPV3m_TaU_bqE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/sq-b609e1c6078c460abc25857ae151bf2e.jpg",
+      "price": null,
+      "id": 2
     }
   ],
   "categories": [

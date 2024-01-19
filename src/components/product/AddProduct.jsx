@@ -12,6 +12,7 @@ const AddProduct = () => {
     image: "",
     price: "",
   });
+
   const handleInput = (e) => {
     if (e.target.name === "price") {
       const obj = { ...product, [e.target.name]: Number(e.target.value) };
@@ -87,7 +88,7 @@ const AddProduct = () => {
             borderRadius: "10px",
           },
         }}
-      />{" "}
+      />
       <CategorySelect
         handleInput={handleInput}
         sx={{ backgroundColor: "rgb(255, 225, 170)" }}
@@ -95,6 +96,7 @@ const AddProduct = () => {
       <Button
         fullWidth
         variant="outlined"
+        onClick={() => addProduct(product)}
         sx={{
           borderRadius: "10px",
           "& fieldset": {
@@ -102,7 +104,6 @@ const AddProduct = () => {
           },
           backgroundColor: "rgb(255, 225, 170)",
         }}
-        onClick={() => addProduct(product)}
       >
         ADD PRODUCT
       </Button>
